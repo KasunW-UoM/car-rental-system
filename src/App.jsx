@@ -6,6 +6,11 @@ import Car from "./pages/Car"
 import CarDetails from "./pages/CarDetails"
 import MyBookings from "./pages/MyBookings"
 import Footer from "./components/Footer"
+import Layout from "./pages/owner/Layout"
+import Dashboard from "./pages/owner/Dashboard"
+import AddCar from "./pages/owner/AddCar"
+import ManageCars from "./pages/owner/ManageCars"
+import ManageBookings from "./pages/owner/ManageBookings"
 
 const App = () => {
 
@@ -20,6 +25,13 @@ const App = () => {
       <Route path="/cars" element={<Car />} />
       <Route path="/car-details/:id" element={<CarDetails />} />
       <Route path="/my-bookings" element={<MyBookings />} />
+      {/* Owner Routes */}
+      <Route path="/owner" element={<Layout />} >
+        <Route index element={<Dashboard />} />
+        <Route path="add-car" element={<AddCar />} />
+        <Route path="manage-car" element={<ManageCars />} />
+        <Route path="manage-bookings" element={<ManageBookings />} />
+      </Route>
     </Routes>
     {!isOwnerPath && <div className="mt-12"><Footer /></div>}
 
