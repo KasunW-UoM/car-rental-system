@@ -11,14 +11,22 @@ import Dashboard from "./pages/owner/Dashboard"
 import AddCar from "./pages/owner/AddCar"
 import ManageCars from "./pages/owner/ManageCars"
 import ManageBookings from "./pages/owner/ManageBookings"
+import Login from "./components/Login"
 
 const App = () => {
 
-  const [showLogin, setShowLogin] = useState(false)
+  // modalType can be 'login' | 'register' | null
+  const [modalType, setModalType] = useState(null)
+
+  const showLogin = modalType === 'login'
+  const showRegister = modalType === 'register'
   const isOwnerPath = useLocation().pathname.startsWith('/owner')
   return (
     <>
-      {!isOwnerPath && <Navbar setShowLogin={setShowLogin} />}
+    {showLogin && <Login defaultState="login" setShowModal={setModalType} />}
+    {showRegister && <Login defaultState="register" setShowModal={setModalType} />}
+
+      {!isOwnerPath && <Navbar openModal={setModalType} />}
 
     <Routes>
       <Route path="/" element={<Home/>} />
